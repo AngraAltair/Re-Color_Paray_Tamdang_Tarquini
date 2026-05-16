@@ -1,0 +1,4 @@
+repository "Re-Color_Paray_Tamdang_Tarquini/Re-Color_Paray_Tamdang_Tarquini@20067324644304@cloud"
+  path "/"
+    br "/main"
+    co "/main"
