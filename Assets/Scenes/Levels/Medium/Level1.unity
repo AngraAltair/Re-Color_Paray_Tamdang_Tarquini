@@ -238,6 +238,9 @@ Transform:
   - {fileID: 1159919858}
   - {fileID: 1722959120}
   - {fileID: 943207635}
+  - {fileID: 1469932134}
+  - {fileID: 1393119821}
+  - {fileID: 220967169}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &220967168
@@ -251,7 +254,7 @@ GameObject:
   - component: {fileID: 220967169}
   - component: {fileID: 220967170}
   m_Layer: 0
-  m_Name: WallRight (4)
+  m_Name: Platform6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -265,12 +268,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 220967168}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -4.322, y: 2.92, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -3.1883373, y: 0.26775265, z: -0.0129037965}
   m_LocalScale: {x: 2.4027526, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2076814318}
+  m_Father: {fileID: 108348028}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &220967170
 SpriteRenderer:
@@ -511,7 +514,7 @@ GameObject:
   - component: {fileID: 943207635}
   - component: {fileID: 943207636}
   m_Layer: 0
-  m_Name: Platform1 (1)
+  m_Name: Platform3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -763,7 +766,7 @@ GameObject:
   - component: {fileID: 1393119821}
   - component: {fileID: 1393119822}
   m_Layer: 0
-  m_Name: WallRight (3)
+  m_Name: Platform5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -777,12 +780,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393119820}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 4.305, y: 2.92, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 5.4386625, y: 0.26775265, z: -0.0129037965}
   m_LocalScale: {x: 2.4027526, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2076814318}
+  m_Father: {fileID: 108348028}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &1393119822
 SpriteRenderer:
@@ -847,7 +850,7 @@ GameObject:
   - component: {fileID: 1469932134}
   - component: {fileID: 1469932135}
   m_Layer: 0
-  m_Name: WallRight (1)
+  m_Name: Platform4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -861,12 +864,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1469932133}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 5.06, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 1.1336627, y: 2.4077525, z: -0.0129037965}
   m_LocalScale: {x: 3.8500001, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2076814318}
+  m_Father: {fileID: 108348028}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &1469932135
 SpriteRenderer:
@@ -931,7 +934,7 @@ GameObject:
   - component: {fileID: 1722959120}
   - component: {fileID: 1722959121}
   m_Layer: 0
-  m_Name: Platform1 (2)
+  m_Name: Platform2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1120,9 +1123,6 @@ Transform:
   - {fileID: 26421791}
   - {fileID: 719763239}
   - {fileID: 2018586030}
-  - {fileID: 1469932134}
-  - {fileID: 1393119821}
-  - {fileID: 220967169}
   - {fileID: 975438409}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
