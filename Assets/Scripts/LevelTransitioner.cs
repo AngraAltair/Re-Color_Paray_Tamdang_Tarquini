@@ -35,10 +35,8 @@ public class LevelTransitioner : MonoBehaviour
 
     private void Start()
     {
-        // Make sure the intro canvas is hidden at the absolute start of the game
         if (toLevelCanvas != null) toLevelCanvas.SetActive(false);
         
-        // Ensure the outro canvas is hidden after its initial scene-start logic
         if (fromLevelCanvas != null) fromLevelCanvas.SetActive(false);
     }
 

@@ -73,13 +73,19 @@ public class DoorScript : MonoBehaviour
     {
         Debug.Log("Sequence complete! Transitioning to next level...");
         
-        if (!string.IsNullOrEmpty(nextSceneName))
-        {
-            SceneManager.LoadScene(nextSceneName);
-        }
-        else
+        if (string.IsNullOrEmpty(nextSceneName))
         {
             Debug.LogWarning("DoorScript: Next Scene Name is empty! Assign it in the Inspector.");
+            return;
         }
+
+        if (LevelTransitioner.Instance != null)
+        {
+            LevelTransitioner.Instance.TransitionToLevel(nextSceneName);
+            return;
+        }
+
+        // Fallback if the transitioner isn't present in the scene.
+        SceneManager.LoadScene(nextSceneName);
     }
 }
