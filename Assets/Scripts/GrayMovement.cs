@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 // NOTE: This uses Rigidbody2D.velocity / .drag, which work on Unity 2022/2023 and earlier.
@@ -10,6 +11,7 @@ public class GrayMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private SpriteRenderer spriteRenderer; // optional, used for facing flip
+
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
@@ -28,6 +30,11 @@ public class GrayMovement : MonoBehaviour
     [SerializeField] private int maxJumpCount = 2;
     [SerializeField] private bool enableDebugDoubleJump = false;
     [SerializeField] private float cartwheelDuration = 0.25f;
+
+    [Header("Drag Object References")]
+    [Tooltip("Currently dragged object. Set by mouse click.")]
+    [SerializeField] private GameObject draggedObject;
+    private bool isDraggingObject;
 
     private float horizontalInput;
     private bool isGrounded;
@@ -90,6 +97,22 @@ public class GrayMovement : MonoBehaviour
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
             jumpRequested = true;
+
+        // Mouse click attempt
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            Debug.Log("Mouse pressed.");
+            MouseClick();
+        }
+
+        if (isDraggingObject)
+        {
+            if (Mouse.current.leftButton.wasReleasedThisFrame)
+            {
+                Debug.Log("Object let go of.");
+                MouseLetGo();
+            }
+        }
     }
 
     private void TryConsumeJump()
@@ -123,6 +146,45 @@ public class GrayMovement : MonoBehaviour
             StartCartwheel();
     }
 
+    private void MouseClick()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+        // Cast a ray at that exact point in 2D space
+        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+        // Check if the ray hit a 2D collider
+        if (hit.collider != null)
+        {
+            GameObject clickedObject = hit.collider.gameObject;
+            Debug.Log("Globally detected click on: " + clickedObject.name);
+            // Interact with the object here
+            if (clickedObject.CompareTag("RedMoveable") && 
+            // clickedObject.TryGetComponent<RedBlockMoveable>(out RedBlockMoveable redBlock)
+            clickedObject.GetComponent<RedBlockMoveable>() != null)
+            {
+                // Sets the player's currently "dragged object" as the object detected from raycast.
+                Debug.Log("Object is moveable.");
+                draggedObject = clickedObject;
+
+                RedBlockMoveable redBlockMoveable = draggedObject.GetComponent<RedBlockMoveable>();
+
+                isDraggingObject = true;
+                redBlockMoveable.isDragged = true;
+                redBlockMoveable.SetOffset();
+            }
+        }
+    }
+
+    private void MouseLetGo()
+    {
+        RedBlockMoveable redBlockMoveable = draggedObject.GetComponent<RedBlockMoveable>();
+        isDraggingObject = false;
+        redBlockMoveable.isDragged = false;
+        draggedObject = null;
+    }
+ 
     private int ActiveJumpCount => (Debug.isDebugBuild && enableDebugDoubleJump) ? maxJumpCount : 1;
 
     private void CheckGrounded()
