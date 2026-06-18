@@ -26,6 +26,7 @@ public class GrayMovement : MonoBehaviour
 
     [Header("Double Jump")]
     [SerializeField] private int maxJumpCount = 2;
+    [SerializeField] private bool enableDebugDoubleJump = false;
     [SerializeField] private float cartwheelDuration = 0.25f;
 
     private float horizontalInput;
@@ -43,7 +44,7 @@ public class GrayMovement : MonoBehaviour
         if (rb == null)
             rb = GetComponent<Rigidbody2D>();
 
-        jumpCount = maxJumpCount;
+        jumpCount = ActiveJumpCount;
 
         if (groundCheckPoint == null)
         {
@@ -62,7 +63,7 @@ public class GrayMovement : MonoBehaviour
         CheckGrounded();
 
         if (isGrounded && !wasGrounded)
-            jumpCount = maxJumpCount;
+            jumpCount = ActiveJumpCount;
 
         ApplyDrag();
         ApplyFallMultiplier();
@@ -102,7 +103,7 @@ public class GrayMovement : MonoBehaviour
             return;
         }
 
-        bool isSecondJump = !isGrounded && jumpCount == 1;
+        bool isSecondJump = !isGrounded && jumpCount == 1 && ActiveJumpCount > 1;
         Jump(isSecondJump);
         jumpRequested = false;
     }
@@ -121,6 +122,8 @@ public class GrayMovement : MonoBehaviour
         if (isSecondJump)
             StartCartwheel();
     }
+
+    private int ActiveJumpCount => (Debug.isDebugBuild && enableDebugDoubleJump) ? maxJumpCount : 1;
 
     private void CheckGrounded()
     {
