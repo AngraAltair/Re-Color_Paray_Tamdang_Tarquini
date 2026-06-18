@@ -40,15 +40,12 @@ public class GrayMovement : MonoBehaviour
     private float horizontalInput;
     private bool isGrounded;
     private bool isRunning;
-    private bool isJumping;
-    private float currentSpeed;
 
     private int jumpCount;
     private bool wasGrounded;
     private bool jumpRequested;
     private ContactPoint2D[] contactPoints = new ContactPoint2D[16];
     private Coroutine cartwheelCoroutine;
-    private float lastHorizontalInput; // Track direction for jump animations
 
     void Start()
     {
@@ -262,30 +259,11 @@ public class GrayMovement : MonoBehaviour
     {
         if (animator == null) return;
 
-        // Update last direction for jumps
-        if (!Mathf.Approximately(horizontalInput, 0f))
-            lastHorizontalInput = horizontalInput;
-
         // Core parameters
         animator.SetBool("IsGrounded", isGrounded);
         animator.SetBool("IsRunning", isRunning && isGrounded);
         animator.SetFloat("Speed", Mathf.Abs(horizontalInput) * (isRunning ? runSpeed : moveSpeed));
-
-        // === Jump Logic ===
-        bool isMoving = Mathf.Abs(horizontalInput) > 0.01f || Mathf.Abs(lastHorizontalInput) > 0.01f;
-
-        if (!isGrounded)
-        {
-            // In air → choose which jump animation
-            animator.SetBool("IsIdleJump", !isMoving);
-            animator.SetBool("IsDirectionalJump", isMoving);
-        }
-        else
-        {
-            // On ground → reset both
-            animator.SetBool("IsIdleJump", false);
-            animator.SetBool("IsDirectionalJump", false);
-        }
+        animator.SetBool("IsJumping", !isGrounded);
     }
 
     private void StartCartwheel()
