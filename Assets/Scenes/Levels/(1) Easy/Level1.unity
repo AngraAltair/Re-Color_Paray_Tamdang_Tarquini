@@ -285,6 +285,7 @@ MonoBehaviour:
   rb: {fileID: 448093560}
   groundCheckPoint: {fileID: 1137574672}
   spriteRenderer: {fileID: 448093561}
+  animator: {fileID: 0}
   moveSpeed: 7
   runSpeed: 9
   groundDrag: 4
@@ -297,6 +298,7 @@ MonoBehaviour:
   maxJumpCount: 2
   enableDebugDoubleJump: 0
   cartwheelDuration: 0.25
+  draggedObject: {fileID: 0}
 --- !u!50 &448093560
 Rigidbody2D:
   serializedVersion: 4
@@ -984,6 +986,10 @@ PrefabInstance:
     - target: {fileID: 4961553134466224907, guid: 8810be171e7e85442b0d29b4efa60b82, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5501476473298879595, guid: 8810be171e7e85442b0d29b4efa60b82, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.217
       objectReference: {fileID: 0}
     - target: {fileID: 6104543056450436253, guid: 8810be171e7e85442b0d29b4efa60b82, type: 3}
       propertyPath: m_Name
