@@ -6,6 +6,7 @@ public class RedBlockMoveable : MonoBehaviour
 {
     [SerializeField] private LayerMask blockingLayers = ~0;
     [SerializeField] private float collisionBuffer = 0.05f;
+    [SerializeField] private float maxDragSpeed = 6f;
     [SerializeField] private GameObject[] wayPoints;
 
     private Vector3 offset;
@@ -68,6 +69,11 @@ public class RedBlockMoveable : MonoBehaviour
             return;
 
         direction /= distance;
+        float maxDistanceThisFrame = maxDragSpeed * Time.fixedDeltaTime;
+        if (distance > maxDistanceThisFrame)
+            distance = maxDistanceThisFrame;
+
+        targetPosition = currentPosition + direction * distance;
 
         lastCastStart = currentPosition;
         lastCastDirection = direction;
