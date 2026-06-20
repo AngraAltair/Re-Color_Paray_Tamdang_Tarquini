@@ -2,13 +2,18 @@ using UnityEngine;
 
 public class BlackBlockInstakill : MonoBehaviour
 {
-    // Calls PlayerManager's KillPlayer() function to kill the player and initiate the respawn sequence.
-    private void OnTriggerEnter2D(Collider2D other) {
+    // This block only triggers a normal respawn (keeps progress)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         if (other.CompareTag("Player"))
         {
-            if (PlayerManager.Instance != null)
+            if (GameManager.Instance != null)
             {
-                PlayerManager.Instance.StartKillAndRespawn();
+                GameManager.Instance.KillAndRespawnPlayer(resetProgress: false);
+            }
+            else
+            {
+                Debug.LogWarning("GameManager not found! Make sure it's in the scene.");
             }
         }
     }
