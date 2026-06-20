@@ -27,13 +27,18 @@ public class AudioManager : MonoBehaviour
         }
 
         Instance = this;
-
-        // Make this object persist across scene loads
         DontDestroyOnLoad(gameObject);
 
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        // Pre-warm the audio system silently using a volume scale of 0
+        if (jumpSound != null)
+            audioSource.PlayOneShot(jumpSound, 0f);
     }
 
     public void PlaySound(AudioClip clip, float volume = 1f)

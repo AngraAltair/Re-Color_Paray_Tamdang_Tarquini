@@ -50,6 +50,13 @@ public class LevelSelector : MonoBehaviour
         else SwitchToGroup(easyGroup);
     }
 
+    private void Start()
+    {
+        if (activeGroup == easyGroup) SetupStageButtons(easyGroup, 1, 5);
+        else if (activeGroup == mediumGroup) SetupStageButtons(mediumGroup, 6, 10);
+        else if (activeGroup == hardGroup) SetupStageButtons(hardGroup, 11, 15);
+    }
+
     // --- Difficulty Button Callbacks ---
 
     public void OnEasySelected()

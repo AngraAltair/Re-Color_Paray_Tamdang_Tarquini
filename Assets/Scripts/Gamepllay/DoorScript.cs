@@ -1,15 +1,11 @@
 using System.Collections;
 using UnityEngine;
-// If you are loading a new Unity scene, you'll need this:
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
 
 public class DoorScript : MonoBehaviour
 {
     [Header("Children Components")]
-    [Tooltip("The Animator component attached to your 'Lock' child object")]
     [SerializeField] private Animator lockAnimator;
-    
-    [Tooltip("The Animator component attached to your 'DoorToOpen' child object")]
     [SerializeField] private Animator doorAnimator;
 
     [Header("Animation State Names")]
@@ -17,9 +13,12 @@ public class DoorScript : MonoBehaviour
     [SerializeField] private string openStateName = "Open";
 
     [Header("Level Transition Settings")]
-    [Tooltip("The exact name of the Unity Scene you want to load next")]
     [SerializeField] private string nextSceneName = "Level2"; 
-    
+
+    [Header("Stage Settings")]
+    [Tooltip("Which stage this door represents (e.g. 1 for Level1, 2 for Level2, etc.)")]
+    [SerializeField] private int stageNumber = 1;
+
     [Header("Settings")]
     [SerializeField] private string playerTag = "Player";
 
@@ -27,11 +26,9 @@ public class DoorScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Guard clauses: Stop if already opened or if it's not the player
         if (hasOpened) return;
         if (!other.CompareTag(playerTag)) return;
 
-        // Check if the player actually has the key
         if (PlayerManager.Instance != null && PlayerManager.Instance.HasKey)
         {
             StartCoroutine(OpenSequence());
@@ -58,11 +55,8 @@ public class DoorScript : MonoBehaviour
             yield return new WaitForSeconds(doorStateInfo.length);
         }
 
-        // === LEVEL COMPLETE SOUND ===
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlaySound(AudioManager.Instance.levelCompleteSound);
-        else
-            Debug.LogWarning("AudioManager not found for level complete sound.");
 
         TeleportToNextLevel();
     }
@@ -70,7 +64,11 @@ public class DoorScript : MonoBehaviour
     private void TeleportToNextLevel()
     {
         Debug.Log("Sequence complete! Transitioning to next level...");
-        
+
+        // ✅ Mark this stage as cleared before leaving
+        PlayerPrefs.SetInt($"Level{stageNumber}Cleared", 1);
+        PlayerPrefs.Save();
+
         if (string.IsNullOrEmpty(nextSceneName))
         {
             Debug.LogWarning("DoorScript: Next Scene Name is empty! Assign it in the Inspector.");
@@ -80,10 +78,10 @@ public class DoorScript : MonoBehaviour
         if (LevelTransitioner.Instance != null)
         {
             LevelTransitioner.Instance.TransitionToLevel(nextSceneName);
-            return;
         }
-
-        // Fallback if the transitioner isn't present in the scene.
-        SceneManager.LoadScene(nextSceneName);
+        else
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
     }
 }

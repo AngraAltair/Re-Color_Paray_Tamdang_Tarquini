@@ -32,16 +32,12 @@ public class PlayerManager : MonoBehaviour
     {
         if (hasKey) return;
         hasKey = true;
-        // No sound here anymore
     }
 
     public void CollectCrayon()
     {
-        if (hasCrayon) 
-        {
-            AudioManager.Instance.PlaySound(AudioManager.Instance.crayonCollectSound);
-            return;
-        }
+        AudioManager.Instance.PlaySound(AudioManager.Instance.crayonCollectSound);
+        if (hasCrayon) return;
         hasCrayon = true;
     }
 }
