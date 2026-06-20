@@ -24,24 +24,24 @@ public class BlueObjectTrigger : MonoBehaviour
     {
         SpriteRenderer spriteRenderer = transform.parent.GetComponent<SpriteRenderer>();
         
+        // === PLAY COMBINE SOUND ===
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySound(AudioManager.Instance.yellowBlueCombineSound);
+        else if (GetComponent<AudioSource>() != null)
+            GetComponent<AudioSource>().Play();
+
         if (spriteRenderer != null)
         {
-            // Instantly flash green (blue + yellow = green, cute!)
             spriteRenderer.color = new Color(0.13f, 0.55f, 0.13f, 1f);
 
             float elapsedTime = 0f;
-
-            // Fade from green to transparent
             while (elapsedTime < fadeDuration)
             {
                 elapsedTime += Time.deltaTime;
                 float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
-                
                 spriteRenderer.color = new Color(0.13f, 0.55f, 0.13f, alpha);
-
                 yield return null;
             }
-
             spriteRenderer.color = new Color(0.13f, 0.55f, 0.13f, 1f);
         }
 

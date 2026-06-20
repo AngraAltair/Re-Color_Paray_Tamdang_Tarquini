@@ -40,32 +40,30 @@ public class DoorScript : MonoBehaviour
 
     private IEnumerator OpenSequence()
     {
-        // Lock the sequence so it can't be triggered multiple times
         hasOpened = true;
 
-        // 1. Play the Lock animation first
         if (lockAnimator != null)
         {
             lockAnimator.Play(lockStateName);
-            
-            // Wait a brief moment for the animator to switch states, then wait for its duration
-            yield return null; 
+            yield return null;
             var lockStateInfo = lockAnimator.GetCurrentAnimatorStateInfo(0);
             yield return new WaitForSeconds(lockStateInfo.length);
         }
 
-        // 2. Lock is done! Now play the DoorToOpen animation
         if (doorAnimator != null)
         {
             doorAnimator.Play(openStateName);
-            
-            // Wait for the door opening animation to completely finish
             yield return null;
             var doorStateInfo = doorAnimator.GetCurrentAnimatorStateInfo(0);
             yield return new WaitForSeconds(doorStateInfo.length);
         }
 
-        // 3. Both animations are complete. Teleport/Load the next level!
+        // === LEVEL COMPLETE SOUND ===
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySound(AudioManager.Instance.levelCompleteSound);
+        else
+            Debug.LogWarning("AudioManager not found for level complete sound.");
+
         TeleportToNextLevel();
     }
 

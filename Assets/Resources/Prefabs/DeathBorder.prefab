@@ -100,7 +100,6 @@ GameObject:
   m_Component:
   - component: {fileID: 416700932261156971}
   - component: {fileID: 4483803989138743203}
-  - component: {fileID: 5192372670665761229}
   m_Layer: 0
   m_Name: BorderOfDeath (4)
   m_TagString: Untagged
@@ -168,18 +167,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 11.96535}
   m_EdgeRadius: 0
---- !u!114 &5192372670665761229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4217666449592519535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6b6cb3e96df53c49b009e2cc99ff08c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4289317048608471378
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +267,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6659935951396193661}
   - component: {fileID: 541200097724727541}
-  - component: {fileID: 750898764741847918}
   m_Layer: 0
   m_Name: BorderOfDeath (5)
   m_TagString: Untagged
@@ -348,18 +334,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 22.066261, y: 0.93651867}
   m_EdgeRadius: 0
---- !u!114 &750898764741847918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4602442669794643046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6b6cb3e96df53c49b009e2cc99ff08c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6520847892860935210
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +434,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8220722717242936118}
   - component: {fileID: 4625570745217035101}
-  - component: {fileID: 437925228512964458}
   m_Layer: 0
   m_Name: BorderOfDeath (7)
   m_TagString: Untagged
@@ -528,18 +501,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 11.96535}
   m_EdgeRadius: 0
---- !u!114 &437925228512964458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7364826481919391537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6b6cb3e96df53c49b009e2cc99ff08c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8824911922823084593
 GameObject:
   m_ObjectHideFlags: 0

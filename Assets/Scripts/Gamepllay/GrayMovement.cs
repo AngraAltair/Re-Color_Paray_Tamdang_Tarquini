@@ -34,6 +34,9 @@ public class GrayMovement : MonoBehaviour
 
     [Header("Drag Object References")]
     [Tooltip("Currently dragged object. Set by mouse click.")]
+
+    [Header("Audio")]
+
     [SerializeField] private GameObject draggedObject;
     private bool isDraggingObject;
 
@@ -153,10 +156,13 @@ public class GrayMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         jumpCount = Mathf.Max(0, jumpCount - 1);
+        AudioManager.Instance.PlaySound(AudioManager.Instance.jumpSound);
 
         if (isSecondJump)
             StartCartwheel();
+            AudioManager.Instance.PlaySound(AudioManager.Instance.jumpSound);
     }
+
 
     private void MouseClick()
     {
@@ -173,7 +179,6 @@ public class GrayMovement : MonoBehaviour
             Debug.Log("Globally detected click on: " + clickedObject.name);
             // Interact with the object here
             if (clickedObject.CompareTag("RedMoveable") && 
-            // clickedObject.TryGetComponent<RedBlockMoveable>(out RedBlockMoveable redBlock)
             clickedObject.GetComponent<RedBlockMoveable>() != null)
             {
                 // Sets the player's currently "dragged object" as the object detected from raycast.

@@ -145,6 +145,8 @@ MonoBehaviour:
   maxJumpCount: 2
   enableDebugDoubleJump: 1
   cartwheelDuration: 0.25
+  jumpSound: {fileID: 8300000, guid: 23e8a805b3f8b104ab5bcc698b2eacad, type: 3}
+  crayonCollectSound: {fileID: 8300000, guid: 5652654c946c7ec4d827435cfae51ddc, type: 3}
   draggedObject: {fileID: 0}
 --- !u!61 &4690889099442330158
 BoxCollider2D:
@@ -204,9 +206,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5455922247851831374}
-  playerSpawnPoint: {fileID: 0}
   hasKey: 0
+  hasCrayon: 0
   isAlive: 1
+  crayonCollectSound: {fileID: 8300000, guid: 5652654c946c7ec4d827435cfae51ddc, type: 3}
 --- !u!95 &162953278900749608
 Animator:
   serializedVersion: 5

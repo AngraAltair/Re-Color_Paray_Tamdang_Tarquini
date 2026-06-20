@@ -97,20 +97,52 @@ public class LevelSelector : MonoBehaviour
 
     public void ResetAllStageProgress()
     {
+        // Wipe stage clear flags
         for (int i = 1; i <= 15; i++)
         {
-            PlayerPrefs.DeleteKey($"Level{i}Cleared");
+            PlayerPrefs.DeleteKey(StageKey(i));
         }
 
-        PlayerPrefs.DeleteKey("ShowTutorialPopup");
-        PlayerPrefs.DeleteKey("ShowSecondTutorialPopup");
-
-        PlayerPrefs.DeleteKey("LastDifficultyGroup");
+        // Reset tutorial popups + difficulty
+        PlayerPrefs.DeleteKey(PrefKey);
+        PlayerPrefs.DeleteKey(SecondPrefKey);
+        PlayerPrefs.DeleteKey(LastDifficultyKey);
 
         PlayerPrefs.Save();
 
-        Debug.Log("All stage progress wiped. Difficulty reset to Easy.");
+        SetGroupInteractable(easyGroup, false);
+        SetGroupInteractable(mediumGroup, false);
+        SetGroupInteractable(hardGroup, false);
+
+        SetupStageButtons(easyGroup, 1, 5);
+        SetupStageButtons(mediumGroup, 6, 10);
+        SetupStageButtons(hardGroup, 11, 15);
+
+        Debug.Log("All stage progress wiped. Buttons locked, difficulty reset to Easy.");
     }
+
+
+    public void UnlockAllStagesForTesting()
+    {
+        for (int i = 1; i <= 15; i++)
+        {
+            PlayerPrefs.SetInt(StageKey(i), 1);
+        }
+
+        // Disable tutorial popups so they don’t block you
+        PlayerPrefs.SetInt(PrefKey, 0);
+        PlayerPrefs.SetInt(SecondPrefKey, 0);
+
+        PlayerPrefs.Save();
+
+        if (activeGroup == easyGroup) SetupStageButtons(easyGroup, 1, 5);
+        else if (activeGroup == mediumGroup) SetupStageButtons(mediumGroup, 6, 10);
+        else if (activeGroup == hardGroup) SetupStageButtons(hardGroup, 11, 15);
+
+        Debug.Log("All stages unlocked and buttons refreshed.");
+    }
+
+
 
     // --- Animation ---
 

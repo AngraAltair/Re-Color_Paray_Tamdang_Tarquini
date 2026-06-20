@@ -1,29 +1,22 @@
-using System;
-using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance { get; private set; }
 
     [Header("Object References")]
-    // [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject player;
-    private SpriteRenderer spriteRenderer;
 
     [Header("Inventory")]
     [SerializeField] private bool hasKey = false;
+    [SerializeField] private bool hasCrayon = false;
 
     [Header("Player State")]
     [SerializeField] private bool isAlive = true;
 
     public bool HasKey => hasKey;
+    public bool HasCrayon => hasCrayon;
     public bool IsAlive => isAlive;
-
-    private Coroutine deathCoroutine;
 
     private void Awake()
     {
@@ -32,21 +25,23 @@ public class PlayerManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
-    }
-
-    private void Start()
-    {
-        spriteRenderer = player.GetComponent<SpriteRenderer>();
     }
 
     public void CollectKey()
     {
-        if (hasKey)
-            return;
-
+        if (hasKey) return;
         hasKey = true;
-        Debug.Log("PlayerManager: Key collected.");
+        // No sound here anymore
+    }
+
+    public void CollectCrayon()
+    {
+        if (hasCrayon) 
+        {
+            AudioManager.Instance.PlaySound(AudioManager.Instance.crayonCollectSound);
+            return;
+        }
+        hasCrayon = true;
     }
 }

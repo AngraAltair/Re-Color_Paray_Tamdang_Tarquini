@@ -8,6 +8,7 @@ public class DeathBorder : MonoBehaviour
         {
             if (GameManager.Instance != null)
             {
+                AudioManager.Instance.PlaySound(AudioManager.Instance.deathBorderSound);
                 GameManager.Instance.RestartLevelWithTransition();
             }
             else
