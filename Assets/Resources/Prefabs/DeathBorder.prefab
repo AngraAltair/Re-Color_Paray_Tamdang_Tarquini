@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4875793300560815524}
   - component: {fileID: 8364992365183103184}
-  - component: {fileID: 1895178313823360330}
+  - component: {fileID: 8336598344948788901}
   m_Layer: 0
   m_Name: BorderOfDeath (2)
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2478398367598312578}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.04, y: 0, z: 0}
+  m_LocalPosition: {x: -21.04, y: -1.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -78,7 +78,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 22.066261, y: 0.93651867}
   m_EdgeRadius: 0
---- !u!114 &1895178313823360330
+--- !u!114 &8336598344948788901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2478398367598312578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dafd5039353dc34ba76b483cc29f833, type: 3}
+  m_Script: {fileID: 11500000, guid: f6b6cb3e96df53c49b009e2cc99ff08c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4217666449592519535
@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 416700932261156971}
   - component: {fileID: 4483803989138743203}
-  - component: {fileID: 670103070847937843}
+  - component: {fileID: 5192372670665761229}
   m_Layer: 0
   m_Name: BorderOfDeath (4)
   m_TagString: Untagged
@@ -117,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 4217666449592519535}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.46, y: 0, z: 0}
+  m_LocalPosition: {x: -21.46, y: -1.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -168,7 +168,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 11.96535}
   m_EdgeRadius: 0
---- !u!114 &670103070847937843
+--- !u!114 &5192372670665761229
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4217666449592519535}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dafd5039353dc34ba76b483cc29f833, type: 3}
+  m_Script: {fileID: 11500000, guid: f6b6cb3e96df53c49b009e2cc99ff08c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4289317048608471378
@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3227640908598612181}
   - component: {fileID: 3835825784531597286}
-  - component: {fileID: 2371556778909287971}
+  - component: {fileID: 8345326457764710723}
   m_Layer: 0
   m_Name: BorderOfDeath
   m_TagString: Untagged
@@ -207,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 4289317048608471378}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.04, y: 0, z: 0}
+  m_LocalPosition: {x: -21.04, y: -1.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -258,7 +258,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 11.96535}
   m_EdgeRadius: 0
---- !u!114 &2371556778909287971
+--- !u!114 &8345326457764710723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4289317048608471378}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dafd5039353dc34ba76b483cc29f833, type: 3}
+  m_Script: {fileID: 11500000, guid: f6b6cb3e96df53c49b009e2cc99ff08c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4602442669794643046
@@ -280,7 +280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6659935951396193661}
   - component: {fileID: 541200097724727541}
-  - component: {fileID: 2585001052746093801}
+  - component: {fileID: 750898764741847918}
   m_Layer: 0
   m_Name: BorderOfDeath (5)
   m_TagString: Untagged
@@ -297,7 +297,7 @@ Transform:
   m_GameObject: {fileID: 4602442669794643046}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.04, y: -0.4, z: 0}
+  m_LocalPosition: {x: -21.04, y: -2.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -348,7 +348,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 22.066261, y: 0.93651867}
   m_EdgeRadius: 0
---- !u!114 &2585001052746093801
+--- !u!114 &750898764741847918
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -357,7 +357,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4602442669794643046}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dafd5039353dc34ba76b483cc29f833, type: 3}
+  m_Script: {fileID: 11500000, guid: f6b6cb3e96df53c49b009e2cc99ff08c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6520847892860935210
@@ -370,7 +370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1202275698227227700}
   - component: {fileID: 404962921607581428}
-  - component: {fileID: 6620744382986880564}
+  - component: {fileID: 9087842594563651617}
   m_Layer: 0
   m_Name: BorderOfDeath (1)
   m_TagString: Untagged
@@ -387,7 +387,7 @@ Transform:
   m_GameObject: {fileID: 6520847892860935210}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -438,7 +438,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 11.96535}
   m_EdgeRadius: 0
---- !u!114 &6620744382986880564
+--- !u!114 &9087842594563651617
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6520847892860935210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dafd5039353dc34ba76b483cc29f833, type: 3}
+  m_Script: {fileID: 11500000, guid: f6b6cb3e96df53c49b009e2cc99ff08c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7364826481919391537
@@ -460,7 +460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8220722717242936118}
   - component: {fileID: 4625570745217035101}
-  - component: {fileID: 4372585433011880336}
+  - component: {fileID: 437925228512964458}
   m_Layer: 0
   m_Name: BorderOfDeath (7)
   m_TagString: Untagged
@@ -477,7 +477,7 @@ Transform:
   m_GameObject: {fileID: 7364826481919391537}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.27, y: 0, z: 0}
+  m_LocalPosition: {x: 0.27, y: -1.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -528,7 +528,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 11.96535}
   m_EdgeRadius: 0
---- !u!114 &4372585433011880336
+--- !u!114 &437925228512964458
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7364826481919391537}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dafd5039353dc34ba76b483cc29f833, type: 3}
+  m_Script: {fileID: 11500000, guid: f6b6cb3e96df53c49b009e2cc99ff08c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8824911922823084593

@@ -14,6 +14,8 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] private RectTransform easyGroup;
     [SerializeField] private RectTransform mediumGroup;
     [SerializeField] private RectTransform hardGroup;
+    private const string LastDifficultyKey = "LastDifficultyGroup";
+
 
     [Header("Position Settings")]
     [SerializeField] private float upY = 0f;       // Y position when active/visible
@@ -23,6 +25,7 @@ public class LevelSelector : MonoBehaviour
     private string pendingLevelScene;
     private const string PrefKey = "ShowTutorialPopup";
     private const string SecondPrefKey = "ShowSecondTutorialPopup";
+    private string StageKey(int stageNumber) => $"Level{stageNumber}Cleared";
 
     // Track which group is currently active
     private RectTransform activeGroup;
@@ -32,18 +35,19 @@ public class LevelSelector : MonoBehaviour
         tutorialPopupPanel.SetActive(false);
         secondTutorialPopupPanel.SetActive(false);
 
-        // Start with all groups at downY, hidden
         SetGroupY(easyGroup, downY);
         SetGroupY(mediumGroup, downY);
         SetGroupY(hardGroup, downY);
 
-        // Disable all level buttons initially
         SetGroupInteractable(easyGroup, false);
         SetGroupInteractable(mediumGroup, false);
         SetGroupInteractable(hardGroup, false);
 
-        // Activate easy group by default
-        SwitchToGroup(easyGroup);
+        string lastDifficulty = PlayerPrefs.GetString(LastDifficultyKey, "Easy");
+
+        if (lastDifficulty == "Medium") SwitchToGroup(mediumGroup);
+        else if (lastDifficulty == "Hard") SwitchToGroup(hardGroup);
+        else SwitchToGroup(easyGroup);
     }
 
     // --- Difficulty Button Callbacks ---
@@ -63,11 +67,15 @@ public class LevelSelector : MonoBehaviour
         SwitchToGroup(hardGroup);
     }
 
+        private void SaveLastDifficulty(string difficulty)
+    {
+        PlayerPrefs.SetString(LastDifficultyKey, difficulty);
+        PlayerPrefs.Save();
+    }
     // --- Core Switch Logic ---
 
     private void SwitchToGroup(RectTransform selectedGroup)
     {
-        // Slide down and disable all groups
         foreach (var group in new[] { easyGroup, mediumGroup, hardGroup })
         {
             if (group != selectedGroup)
@@ -77,11 +85,31 @@ public class LevelSelector : MonoBehaviour
             }
         }
 
-        // Slide up and enable the selected one
         StartCoroutine(SlideGroup(selectedGroup, upY));
         SetGroupInteractable(selectedGroup, true);
 
+        if (selectedGroup == easyGroup) SetupStageButtons(easyGroup, 1, 5);
+        else if (selectedGroup == mediumGroup) SetupStageButtons(mediumGroup, 6, 10);
+        else if (selectedGroup == hardGroup) SetupStageButtons(hardGroup, 11, 15);
+
         activeGroup = selectedGroup;
+    }
+
+    public void ResetAllStageProgress()
+    {
+        for (int i = 1; i <= 15; i++)
+        {
+            PlayerPrefs.DeleteKey($"Level{i}Cleared");
+        }
+
+        PlayerPrefs.DeleteKey("ShowTutorialPopup");
+        PlayerPrefs.DeleteKey("ShowSecondTutorialPopup");
+
+        PlayerPrefs.DeleteKey("LastDifficultyGroup");
+
+        PlayerPrefs.Save();
+
+        Debug.Log("All stage progress wiped. Difficulty reset to Easy.");
     }
 
     // --- Animation ---
@@ -111,17 +139,22 @@ public class LevelSelector : MonoBehaviour
         group.anchoredPosition = new Vector2(group.anchoredPosition.x, y);
     }
 
-    private void SetGroupInteractable(RectTransform group, bool interactable)
+private void SetGroupInteractable(RectTransform group, bool interactable)
+{
+    foreach (var btn in group.GetComponentsInChildren<Button>())
     {
-        foreach (var btn in group.GetComponentsInChildren<Button>())
-            btn.interactable = interactable;
+        btn.interactable = interactable;
+        Debug.Log($"{btn.name} interactable = {interactable}, color = {btn.image.color}");
     }
+}
+
 
     // --- Level Loading (your existing logic, untouched) ---
 
     public void OnFirstStageButton(string levelScene)
     {
         pendingLevelScene = levelScene;
+        SaveLastDifficulty("Easy");
 
         if (PlayerPrefs.GetInt(PrefKey, 1) == 1)
             tutorialPopupPanel.SetActive(true);
@@ -132,6 +165,7 @@ public class LevelSelector : MonoBehaviour
     public void OnSecondStageButton(string levelScene)
     {
         pendingLevelScene = levelScene;
+        SaveLastDifficulty("Medium");
 
         if (PlayerPrefs.GetInt(SecondPrefKey, 1) == 1)
             secondTutorialPopupPanel.SetActive(true);
@@ -139,8 +173,21 @@ public class LevelSelector : MonoBehaviour
             LoadScene(levelScene);
     }
 
-    public void OnStageButton(string sceneName)
+    public void OnStageEasyButton(string sceneName)
     {
+        SaveLastDifficulty("Easy");
+        LoadScene(sceneName);
+    }
+
+    public void OnStageMediumButton(string sceneName)
+    {
+        SaveLastDifficulty("Medium");
+        LoadScene(sceneName);
+    }
+
+    public void OnStageHardButton(string sceneName)
+    {
+        SaveLastDifficulty("Hard");
         LoadScene(sceneName);
     }
 
@@ -170,6 +217,13 @@ public class LevelSelector : MonoBehaviour
         PlayerPrefs.SetInt(PrefKey, 1);
         PlayerPrefs.Save();
     }
+
+    public void ReenableSecondTutorialPopup()
+{
+    PlayerPrefs.SetInt(SecondPrefKey, 1);
+    PlayerPrefs.Save();
+}
+
 
     public void ShowSecondTutorialPopup()
     {
@@ -202,4 +256,43 @@ public class LevelSelector : MonoBehaviour
         else
             SceneManager.LoadScene(sceneName);
     }
+
+    // --- Unlocking Levels ---
+
+    public void MarkStageCleared(int stageNumber)
+    {
+        PlayerPrefs.SetInt(StageKey(stageNumber), 1);
+        PlayerPrefs.Save();
+    }
+
+    public bool IsStageCleared(int stageNumber)
+    {
+        return PlayerPrefs.GetInt(StageKey(stageNumber), 0) == 1;
+    }
+
+    private void SetupStageButtons(RectTransform group, int startStage, int endStage)
+    {
+        Button[] buttons = group.GetComponentsInChildren<Button>();
+
+        for (int i = startStage; i <= endStage; i++)
+        {
+            int index = i - startStage;
+            bool unlocked = false;
+
+            if (i == startStage)
+            {
+                if (i == 1) unlocked = true;
+                else if (i == 6) unlocked = IsStageCleared(5);
+                else if (i == 11) unlocked = IsStageCleared(10);
+            }
+            else
+            {
+                unlocked = IsStageCleared(i - 1);
+            }
+
+            buttons[index].interactable = unlocked;
+        }
+    }
+
+
 }

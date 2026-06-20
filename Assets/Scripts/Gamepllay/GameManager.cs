@@ -109,6 +109,19 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void RestartLevelWithTransition()
+    {
+        if (LevelTransitioner.Instance != null)
+        {
+            LevelTransitioner.Instance.ReloadCurrentLevel();
+        }
+        else
+        {
+            Debug.LogWarning("LevelTransitioner not found. Falling back to direct reload.");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
     // ==================== UI ====================
 
     public void TogglePausePanel()

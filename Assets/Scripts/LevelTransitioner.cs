@@ -36,7 +36,6 @@ public class LevelTransitioner : MonoBehaviour
     private void Start()
     {
         if (toLevelCanvas != null) toLevelCanvas.SetActive(false);
-        
         if (fromLevelCanvas != null) fromLevelCanvas.SetActive(false);
     }
 
@@ -45,42 +44,54 @@ public class LevelTransitioner : MonoBehaviour
         StartCoroutine(TransitionSequence(sceneName));
     }
 
+    // Existing method (unchanged)
     private IEnumerator TransitionSequence(string sceneName)
     {
-        // 1. START THE 'TO LEVEL' SECTOR (Enter the Rainbow)
+        // 1. START THE 'TO LEVEL' SECTOR
         if (toLevelCanvas != null && toLevelAnimator != null)
         {
-            toLevelCanvas.SetActive(true); // Turn the canvas on so it can render
+            toLevelCanvas.SetActive(true);
             toLevelAnimator.Play(toLevelStateName);
             
-            // Wait for the 7 rainbow panels to completely cover the screen
             yield return null;
             var stateInfo = toLevelAnimator.GetCurrentAnimatorStateInfo(0);
             yield return new WaitForSeconds(stateInfo.length);
         }
 
-        // 2. LOAD THE NEW SCENE IN THE BACKGROUND
+        // 2. LOAD THE NEW SCENE
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         while (!asyncLoad.isDone)
         {
             yield return null; 
         }
 
-        // Clean up the first canvas now that the new scene is loaded
+        // Clean up
         if (toLevelCanvas != null) toLevelCanvas.SetActive(false);
 
-        // 3. START THE 'FROM LEVEL' SECTOR (Exit the Rainbow)
+        // 3. START THE 'FROM LEVEL' SECTOR
         if (fromLevelCanvas != null && fromLevelAnimator != null)
         {
-            fromLevelCanvas.SetActive(true); // Turn it on
+            fromLevelCanvas.SetActive(true);
             fromLevelAnimator.Play(fromLevelStateName);
             
-            // Wait for the 7 panels to clear away revealing the new level
             yield return null;
             var stateInfo = fromLevelAnimator.GetCurrentAnimatorStateInfo(0);
             yield return new WaitForSeconds(stateInfo.length);
             
-            fromLevelCanvas.SetActive(false); // Shut it off so it doesn't block player clicks!
+            fromLevelCanvas.SetActive(false);
         }
+    }
+
+    // ==================== NEW METHOD FOR DEATH BORDER ====================
+    public void ReloadCurrentLevel()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        StartCoroutine(ReloadCurrentLevelSequence(currentSceneName));
+    }
+
+    private IEnumerator ReloadCurrentLevelSequence(string sceneName)
+    {
+        // Same transition logic as normal level change
+        yield return StartCoroutine(TransitionSequence(sceneName));
     }
 }

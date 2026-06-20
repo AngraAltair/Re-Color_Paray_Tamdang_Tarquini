@@ -413,7 +413,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 65572542}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 734159072}
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: OnStageMediumButton
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Level8
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &65572542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,6 +842,18 @@ MonoBehaviour:
           m_StringArgument: Level1
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 734159072}
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: MarkStageCleared
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &243171365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -953,7 +977,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 734159072}
         m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
-        m_MethodName: OnStageButton
+        m_MethodName: OnStageEasyButton
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1710,7 +1734,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 554608132}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 734159072}
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: OnStageHardButton
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Level12
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &554608132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2095,7 +2131,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 701621820}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 734159072}
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: OnStageHardButton
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Level15
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &701621820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2213,13 +2261,13 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 355565144}
+  m_TargetGraphic: {fileID: 710910255}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 734159072}
         m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
-        m_MethodName: OnStageButton
+        m_MethodName: OnStageEasyButton
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2741,13 +2789,13 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 355565144}
+  m_TargetGraphic: {fileID: 770997531}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 734159072}
         m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
-        m_MethodName: OnStageButton
+        m_MethodName: OnStageEasyButton
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3089,14 +3137,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 734159072}
         m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
-        m_MethodName: OnFirstStageButton
+        m_MethodName: OnStageHardButton
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level1
+          m_StringArgument: Level11
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &827977941
@@ -4726,13 +4774,13 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 355565144}
+  m_TargetGraphic: {fileID: 1168228449}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 734159072}
         m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
-        m_MethodName: OnStageButton
+        m_MethodName: OnStageEasyButton
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5244,7 +5292,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1332138565}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 734159072}
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: OnStageMediumButton
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Level9
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1332138565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5690,7 +5750,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1471251787}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 734159072}
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: OnStageHardButton
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Level13
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1471251787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6572,7 +6644,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1612136329}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 734159072}
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: OnStageMediumButton
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Level7
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1612136329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7525,7 +7609,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1825248669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8010,7 +8094,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2004833004}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 734159072}
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: OnStageHardButton
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Level14
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2004833004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8569,7 +8665,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2139406775}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 734159072}
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: OnStageMediumButton
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Level10
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2139406775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8694,6 +8802,30 @@ MonoBehaviour:
       - m_Target: {fileID: 734159072}
         m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
         m_MethodName: ReenableTutorialPopup
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 734159072}
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: ReenableSecondTutorialPopup
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 734159072}
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: ResetAllStageProgress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
