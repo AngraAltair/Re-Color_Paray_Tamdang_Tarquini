@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0.733827, b: 0.040880322, a: 1}
   m_FlipX: 0
@@ -95,7 +95,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 3064149619723918023}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 44035f8871110f84ebae1b9f80ee52d6, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

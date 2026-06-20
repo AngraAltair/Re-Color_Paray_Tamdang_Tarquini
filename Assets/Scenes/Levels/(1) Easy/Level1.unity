@@ -253,6 +253,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5546199292554685838, guid: 33e11b41c3c0d604dae43a08214b3e63, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5546199292554685838, guid: 33e11b41c3c0d604dae43a08214b3e63, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7190389835859423419, guid: 33e11b41c3c0d604dae43a08214b3e63, type: 3}
       propertyPath: m_Name
       value: GrayKey
@@ -896,6 +904,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 72
   collisionBuffer: 0.05
+  maxDragSpeed: 6
   wayPoints:
   - {fileID: 653863507}
   - {fileID: 946271364}
