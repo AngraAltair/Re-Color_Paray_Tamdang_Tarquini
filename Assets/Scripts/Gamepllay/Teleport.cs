@@ -14,14 +14,14 @@ public class ItemManager : MonoBehaviour
     [Header("Spawn Settings (Spawner only)")]
     public GameObject itemPrefab;
     public Transform spawnPoint;
-    public float spawnDelay = 2f;           // Time between each spawn
+    public float spawnDelay = 2f;
 
     [Header("Collector Settings (Collector only)")]
-    public ItemManager spawnerReference;   // Drag the Spawner here when in Collector mode
+    public ItemManager spawnerReference;   // Optional now
 
     [Header("General")]
     public bool autoStart = true;
-    public string collectibleTag = "Collectible";
+    public string collectibleTag = "Collectible";   // Tag for yellow objects
 
     private bool isSpawning = false;
 
@@ -45,11 +45,10 @@ public class ItemManager : MonoBehaviour
     private void SpawnItem()
     {
         if (currentMode != Mode.Spawner || itemPrefab == null) return;
-
         Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 
-    // Called when this object is acting as Collector
+    // Collector logic
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (currentMode != Mode.Collector) return;
@@ -58,12 +57,13 @@ public class ItemManager : MonoBehaviour
         {
             Destroy(other.gameObject);
 
-            if (spawnerReference != null)
+            if (spawnerReference != null && other.transform.parent == spawnerReference.transform)
+            {
                 spawnerReference.NotifyItemCollected();
+            }
         }
     }
 
-    // Optional: Also support regular collisions
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (currentMode != Mode.Collector) return;
@@ -71,11 +71,17 @@ public class ItemManager : MonoBehaviour
         if (collision.gameObject.CompareTag(collectibleTag))
         {
             Destroy(collision.gameObject);
-            if (spawnerReference != null)
+
+            if (spawnerReference != null && collision.transform.parent == spawnerReference.transform)
+            {
                 spawnerReference.NotifyItemCollected();
+            }
         }
     }
+
+
     public void NotifyItemCollected()
     {
+        
     }
 }

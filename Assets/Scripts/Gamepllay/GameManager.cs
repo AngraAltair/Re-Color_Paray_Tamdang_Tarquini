@@ -58,7 +58,21 @@ public class GameManager : MonoBehaviour
         if (!isAlive) return;
 
         isAlive = false;
+
         if (spriteRenderer != null) spriteRenderer.enabled = false;
+
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null) col.enabled = false;
+
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero;
+            rb.isKinematic = true;
+        }
+
+        GrayMovement controller = GetComponent<GrayMovement>();
+        if (controller != null) controller.enabled = false;
 
         Debug.Log("Player killed.");
     }
@@ -81,7 +95,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator RespawnSequence()
     {
         KillPlayer();
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.1f);
         RespawnPlayer();
     }
 
