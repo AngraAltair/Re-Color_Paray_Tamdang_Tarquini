@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class GameManager : MonoBehaviour
     [Header("UI Panels")]
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject audioPanel;
+
+    [SerializeField] private Image pauseIcon;       // UI Image component
+    [SerializeField] private Sprite pausedSprite;   // Sprite to show when paused
+    [SerializeField] private Sprite resumedSprite;  // Sprite to show when resumed
 
     [Header("Player State")]
     private bool isAlive = true;
@@ -44,12 +49,18 @@ public class GameManager : MonoBehaviour
     }
 
     void Update()
+{
+    if (Input.GetKeyDown(KeyCode.R))
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            RestartLevel();
-        }
+        RestartLevel();
     }
+
+    if (Input.GetKeyDown(KeyCode.Escape))
+    {
+        TogglePausePanel();
+    }
+}
+
 
     // ==================== DEATH & RESPAWN ====================
 
@@ -145,6 +156,15 @@ public class GameManager : MonoBehaviour
             bool active = !pausePanel.activeSelf;
             pausePanel.SetActive(active);
             Time.timeScale = active ? 0f : 1f;
+
+            // Swap sprite
+            if (pauseIcon != null)
+                pauseIcon.sprite = active ? pausedSprite : resumedSprite;
+        }
+
+        if (audioPanel != null)
+        {
+            audioPanel.SetActive(false);
         }
     }
 
@@ -153,6 +173,22 @@ public class GameManager : MonoBehaviour
         if (audioPanel != null)
         {
             audioPanel.SetActive(!audioPanel.activeSelf);
+        }
+    }
+
+    public void ReturnToLevelSelect()
+    {
+        Time.timeScale = 1f;
+
+        if (LevelTransitioner.Instance != null)
+        {
+            // Use your transitioner if available
+            LevelTransitioner.Instance.TransitionToLevel("LevelSelection"); 
+        }
+        else
+        {
+            // Fallback direct load
+            SceneManager.LoadScene("LevelSelection");
         }
     }
 }
