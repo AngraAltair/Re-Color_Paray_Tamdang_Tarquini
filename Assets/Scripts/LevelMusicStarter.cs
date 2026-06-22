@@ -8,9 +8,6 @@ public class LevelMusicStarter : MonoBehaviour
     {
         if (MusicManager.Instance == null || levelMusic == null) return;
 
-        if (MusicManager.Instance.CurrentClip != levelMusic)
-        {
-            MusicManager.Instance.PlayMusic(levelMusic);
-        }
+        MusicManager.Instance.PlayMusic(levelMusic);
     }
 }
