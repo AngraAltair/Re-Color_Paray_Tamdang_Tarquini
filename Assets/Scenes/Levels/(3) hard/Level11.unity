@@ -1775,7 +1775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8158708170943192669, guid: c656c98d227da384db9a56addafa5ed0, type: 3}
       propertyPath: blockingLayers.m_Bits
-      value: 200
+      value: 192
       objectReference: {fileID: 0}
     - target: {fileID: 8158708170943192669, guid: c656c98d227da384db9a56addafa5ed0, type: 3}
       propertyPath: wayPoints.Array.data[0]

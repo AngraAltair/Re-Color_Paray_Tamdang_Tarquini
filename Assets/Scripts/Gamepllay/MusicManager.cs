@@ -6,6 +6,8 @@ public class MusicManager : MonoBehaviour
     public static MusicManager Instance { get; private set; }
 
     private AudioSource musicSource;
+    public AudioClip CurrentClip => musicSource.clip;
+
 
     private void Awake()
     {
@@ -26,6 +28,12 @@ public class MusicManager : MonoBehaviour
         // Configure defaults
         musicSource.loop = true;
         musicSource.playOnAwake = false;
+    }
+
+    private void Start()
+    {
+        if (musicSource == null) return;
+        else PlayMusic(CurrentClip);
     }
 
     public void PlayMusic(AudioClip clip, float volume = 1f)
@@ -58,4 +66,15 @@ public class MusicManager : MonoBehaviour
         musicSource.Stop();
         musicSource.volume = startVolume;
     }
+
+        public void PlayIfNotPlaying(AudioClip clip, float volume = 1f)
+    {
+        if (clip == null) return;
+
+        if (musicSource.clip == clip && musicSource.isPlaying)
+            return;
+
+        PlayMusic(clip, volume);
+    }
+
 }

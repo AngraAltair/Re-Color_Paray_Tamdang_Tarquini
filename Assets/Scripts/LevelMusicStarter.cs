@@ -6,7 +6,9 @@ public class LevelMusicStarter : MonoBehaviour
 
     private void Start()
     {
-        if (MusicManager.Instance != null && levelMusic != null)
+        if (MusicManager.Instance == null || levelMusic == null) return;
+
+        if (MusicManager.Instance.CurrentClip != levelMusic)
         {
             MusicManager.Instance.PlayMusic(levelMusic);
         }

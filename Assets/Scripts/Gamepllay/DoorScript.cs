@@ -16,8 +16,9 @@ public class DoorScript : MonoBehaviour
     [SerializeField] private string nextSceneName = "Level2"; 
 
     [Header("Stage Settings")]
-    [Tooltip("Which stage this door represents (e.g. 1 for Level1, 2 for Level2, etc.)")]
     [SerializeField] private int stageNumber = 1;
+    [SerializeField] private bool isTutorialStage = false;
+
 
     [Header("Settings")]
     [SerializeField] private string playerTag = "Player";
@@ -64,9 +65,11 @@ public class DoorScript : MonoBehaviour
     {
         Debug.Log("Sequence complete! Transitioning to next level...");
 
-        // ✅ Mark this stage as cleared before leaving
-        PlayerPrefs.SetInt($"Level{stageNumber}Cleared", 1);
-        PlayerPrefs.Save();
+        if (!isTutorialStage)
+        {
+            PlayerPrefs.SetInt($"Level{stageNumber}Cleared", 1);
+            PlayerPrefs.Save();
+        }
 
         if (string.IsNullOrEmpty(nextSceneName))
         {
