@@ -76,6 +76,36 @@ public class GrayMovement : MonoBehaviour
         
         HandleInput();
         UpdateAnimation();
+
+
+    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+    RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+        if (hit.collider != null && hit.collider.CompareTag("RedMoveable"))
+        {
+            // Change cursor to "pointer" style
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
+        else
+        {
+            // Reset to default arrow
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
+
+        if (isDraggingObject && Input.GetMouseButtonUp(0))
+        {
+            if (draggedObject != null)
+            {
+                RedBlockMoveable redBlockMoveable = draggedObject.GetComponent<RedBlockMoveable>();
+                redBlockMoveable.isDragged = false;
+                draggedObject = null;
+            }
+            isDraggingObject = false;
+
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
     }
 
     void FixedUpdate()
@@ -106,7 +136,7 @@ public class GrayMovement : MonoBehaviour
 
         bool left = Keyboard.current.aKey.isPressed;
         bool right = Keyboard.current.dKey.isPressed;
-        horizontalInput = (right ? 1f : 0f) - (left ? 1f : 0f); // opposing keys cancel out instead of A always winning
+        horizontalInput = (right ? 1f : 0f) - (left ? 1f : 0f);
 
         isRunning = Keyboard.current.shiftKey.isPressed;
 

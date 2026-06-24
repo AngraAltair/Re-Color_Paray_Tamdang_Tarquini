@@ -36,7 +36,6 @@ public class InGameAudioManager : MonoBehaviour
 
     private void Start()
     {
-        // Pre-warm the audio system silently using a volume scale of 0
         if (jumpSound != null)
             audioSource.PlayOneShot(jumpSound, 0f);
     }
@@ -46,4 +45,5 @@ public class InGameAudioManager : MonoBehaviour
         if (clip != null)
             audioSource.PlayOneShot(clip, volume);
     }
+
 }
