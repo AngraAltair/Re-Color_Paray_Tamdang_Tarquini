@@ -23,8 +23,11 @@ public class DifficultyButtonManager : MonoBehaviour
 
     private void Start()
     {
-        // Easy is selected by default
-        SelectButton(easyButton);
+        int lastDifficulty = PlayerPrefs.GetInt("LastDifficulty", 0);
+
+        if (lastDifficulty == 1)      SelectButton(mediumButton);
+        else if (lastDifficulty == 2) SelectButton(hardButton);
+        else                          SelectButton(easyButton);
     }
 
     public void SelectButton(DifficultyButton selected)

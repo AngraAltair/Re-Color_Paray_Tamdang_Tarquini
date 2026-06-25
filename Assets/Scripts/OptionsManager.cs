@@ -29,6 +29,9 @@ public class OptionsManager : MonoBehaviour
         0.65f, 0.8f, 0.95f, 0.975f, 1.0f
     };
 
+    private int lastWidth;
+    private int lastHeight;
+
     private void Awake()
     {
         masterOriginalColors = CacheOriginalColors(masterButtons);
@@ -36,26 +39,43 @@ public class OptionsManager : MonoBehaviour
         sfxOriginalColors = CacheOriginalColors(sfxButtons);
     }
 
-    void Update()
+    private void Update()
     {
-        bool levelSelectorExists = LevelSelector.Instance != null;
+        if (!Screen.fullScreen && (Screen.width != lastWidth || Screen.height != lastHeight))
+        {
+            lastWidth = Screen.width;
+            lastHeight = Screen.height;
 
-        // Toggle interactability
+            PlayerPrefs.SetInt("WindowWidth", lastWidth);
+            PlayerPrefs.SetInt("WindowHeight", lastHeight);
+            PlayerPrefs.Save();
+        }
+
+        bool levelSelectorExists = LevelSelector.Instance != null;
         if (reenableTutorialButtons != null)
             reenableTutorialButtons.interactable = levelSelectorExists;
     }
 
     private void Start()
     {
-        int masterIndex = PlayerPrefs.GetInt("MasterIndex", 8); 
-        int bgmIndex    = PlayerPrefs.GetInt("BGMIndex", 8);  
-        int sfxIndex    = PlayerPrefs.GetInt("SFXIndex", 8);  
+        bool fullscreen = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
+        ApplyFullscreen(fullscreen);
+
+        // Sync the toggle to match saved state
+        // Find your toggle and set it: fullscreenToggle.isOn = fullscreen;
+        // (wire this up in Inspector via OnValueChanged -> ToggleFullscreen)
+
+        lastWidth = Screen.width;
+        lastHeight = Screen.height;
+
+        int masterIndex = PlayerPrefs.GetInt("MasterIndex", 8);
+        int bgmIndex    = PlayerPrefs.GetInt("BGMIndex", 8);
+        int sfxIndex    = PlayerPrefs.GetInt("SFXIndex", 8);
 
         SetMasterVolume(masterIndex);
         SetBGMVolume(bgmIndex);
         SetSFXVolume(sfxIndex);
     }
-
 
     private Color[] CacheOriginalColors(Button[] buttons)
     {
@@ -110,10 +130,32 @@ public class OptionsManager : MonoBehaviour
         }
     }
 
-    public void ToggleFullscreen(bool fullscreen)
+    public void ToggleFullscreen(bool isOn)
     {
-        Screen.fullScreen = fullscreen;
+        ApplyFullscreen(isOn);
+        PlayerPrefs.SetInt("Fullscreen", isOn ? 1 : 0);
+        PlayerPrefs.Save();
     }
+
+    private void ApplyFullscreen(bool fullscreen)
+    {
+        if (fullscreen)
+        {
+            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+            Screen.fullScreen = true;
+        }
+        else
+        {
+            int width  = PlayerPrefs.GetInt("WindowWidth", 1280);
+            int height = PlayerPrefs.GetInt("WindowHeight", 720);
+            Screen.fullScreenMode = FullScreenMode.Windowed;
+            Screen.SetResolution(width, height, false);
+        }
+
+        lastWidth  = Screen.width;
+        lastHeight = Screen.height;
+    }
+
 
     public void ResetProgressFromOptions()
     {

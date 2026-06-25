@@ -348,7 +348,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level8
+          m_StringArgument: 2-3
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &65572542
@@ -401,7 +401,6 @@ GameObject:
   - component: {fileID: 84363177}
   - component: {fileID: 84363176}
   - component: {fileID: 84363175}
-  - component: {fileID: 84363178}
   m_Layer: 5
   m_Name: ReEnable
   m_TagString: Untagged
@@ -535,18 +534,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84363173}
   m_CullTransparentMesh: 1
---- !u!114 &84363178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 84363173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f924903245a368d4c908213e9c209283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &125484631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,7 +1034,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level1
+          m_StringArgument: 1-1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &243171365
@@ -1180,7 +1167,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level2
+          m_StringArgument: 1-2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &355565144
@@ -1715,7 +1702,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level12
+          m_StringArgument: 3-2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &554608132
@@ -2050,7 +2037,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level15
+          m_StringArgument: 3-5
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &701621820
@@ -2183,7 +2170,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level4
+          m_StringArgument: 1-4
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &710910255
@@ -2577,7 +2564,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level5
+          m_StringArgument: 1-5
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &770997531
@@ -2844,7 +2831,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level11
+          m_StringArgument: 3-1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &827977941
@@ -3358,7 +3345,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level6
+          m_StringArgument: 2-1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1048908625
@@ -3977,7 +3964,6 @@ GameObject:
   - component: {fileID: 1168217617}
   - component: {fileID: 1168217616}
   - component: {fileID: 1168217615}
-  - component: {fileID: 1168217618}
   m_Layer: 5
   m_Name: ToMenu
   m_TagString: Untagged
@@ -4099,18 +4085,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1168217613}
   m_CullTransparentMesh: 1
---- !u!114 &1168217618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1168217613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f924903245a368d4c908213e9c209283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1168228446
 GameObject:
   m_ObjectHideFlags: 0
@@ -4203,7 +4177,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level3
+          m_StringArgument: 1-3
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1168228449
@@ -4643,7 +4617,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level9
+          m_StringArgument: 2-4
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1332138565
@@ -4697,7 +4671,6 @@ GameObject:
   - component: {fileID: 1336630385}
   - component: {fileID: 1336630384}
   - component: {fileID: 1336630387}
-  - component: {fileID: 1336630388}
   m_Layer: 5
   m_Name: Easy
   m_TagString: Untagged
@@ -4836,18 +4809,6 @@ MonoBehaviour:
   colorDuration: 0.2
   difficultyLabel: {fileID: 1705744807}
   fadeDuration: 0.3
---- !u!114 &1336630388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1336630382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f924903245a368d4c908213e9c209283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1384703602
 GameObject:
   m_ObjectHideFlags: 0
@@ -5114,7 +5075,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level13
+          m_StringArgument: 3-3
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1471251787
@@ -6008,7 +5969,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level7
+          m_StringArgument: 2-2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1612136329
@@ -6654,7 +6615,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpSound: {fileID: 8300000, guid: 5e5d470fea941494fbbeee17011b0dcf, type: 3}
-  walkSound: {fileID: 8300000, guid: 025ad51f3bdd5b4429f3af53dd7fcb28, type: 3}
   crayonCollectSound: {fileID: 8300000, guid: a08df658bea1a4145a19134e7e32dfc6, type: 3}
   deathInstakillSound: {fileID: 8300000, guid: a78bf4f3d6927b24d9e81f1ab5b2a3f1, type: 3}
   deathBorderSound: {fileID: 8300000, guid: 4b00cba84db81bd469309fdb405a7629, type: 3}
@@ -7404,7 +7364,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level14
+          m_StringArgument: 3-4
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2004833004
@@ -7845,7 +7805,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level10
+          m_StringArgument: 2-5
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2139406775
@@ -7894,6 +7854,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2726814998201856281, guid: 088e0ddb3f9eb8a47a6f80418886574a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3668329384842294889, guid: 088e0ddb3f9eb8a47a6f80418886574a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4131133257997465960, guid: 088e0ddb3f9eb8a47a6f80418886574a, type: 3}
       propertyPath: m_Name
       value: Transitions

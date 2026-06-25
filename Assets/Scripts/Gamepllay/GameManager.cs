@@ -182,13 +182,25 @@ public class GameManager : MonoBehaviour
 
         if (LevelTransitioner.Instance != null)
         {
-            // Use your transitioner if available
+            PlayerPrefs.SetInt("LastDifficulty", GetDifficultyFromScene());
+            PlayerPrefs.Save();
+            SceneManager.LoadScene("LevelSelect");
             LevelTransitioner.Instance.TransitionToLevel("LevelSelection"); 
         }
         else
         {
-            // Fallback direct load
+            PlayerPrefs.SetInt("LastDifficulty", GetDifficultyFromScene());
+            PlayerPrefs.Save();
             SceneManager.LoadScene("LevelSelection");
         }
+    }
+
+        private int GetDifficultyFromScene()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (sceneName.StartsWith("2-")) return 1;
+        if (sceneName.StartsWith("3-")) return 2;
+        return 0;                                  
     }
 }
