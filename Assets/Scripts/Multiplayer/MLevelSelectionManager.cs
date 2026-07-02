@@ -102,6 +102,13 @@ public class MLevelSelectionManager : MonoBehaviourPunCallbacks, IOnEventCallbac
 
         if (PhotonNetwork.InRoom)
             isPlayerOne = PhotonNetwork.LocalPlayer.ActorNumber == 1;
+
+        // Diagnostic: warn early if the feedback system has nothing to fall back on.
+        if (feedbackPopupPrefab == null && feedbackPopup == null)
+            Debug.LogWarning("[MLevelSelectionManager] No feedbackPopupPrefab AND no feedbackPopup found/assigned. ShowFeedback() will silently do nothing until one of these is set.");
+
+        if (roleFeedbackPopupPrefab == null && roleFeedbackPopup == null)
+            Debug.LogWarning("[MLevelSelectionManager] No roleFeedbackPopupPrefab AND no roleFeedbackPopup found/assigned. ShowRoleFeedback() will silently do nothing until one of these is set.");
     }
 
     private void OnEnable()
@@ -219,7 +226,7 @@ public class MLevelSelectionManager : MonoBehaviourPunCallbacks, IOnEventCallbac
             readyButton = FindObjectOfType<Button>();
 
         if (feedbackPopup == null)
-            feedbackPopup = FindObjectByName("FeedbackPopup");
+            feedbackPopup = FindObjectByName("FeedbackMenu");
 
         if (feedbackPopup != null)
             feedbackPopup.SetActive(false);
@@ -243,19 +250,19 @@ public class MLevelSelectionManager : MonoBehaviourPunCallbacks, IOnEventCallbac
             roleSelectCanvasGroup = FindCanvasGroup("RoleSelect");
 
         if (role1SelectButton == null)
-            role1SelectButton = FindButton("Role1SelectButton");
+            role1SelectButton = FindButton("Select");
 
         if (role1RemoveButton == null)
-            role1RemoveButton = FindButton("Role1RemoveButton");
+            role1RemoveButton = FindButton("Deselect");
 
         if (role2SelectButton == null)
-            role2SelectButton = FindButton("Role2SelectButton");
+            role2SelectButton = FindButton("Select (1)");
 
         if (role2RemoveButton == null)
-            role2RemoveButton = FindButton("Role2RemoveButton");
+            role2RemoveButton = FindButton("Deselect (1)");
 
         if (roleFeedbackPopup == null)
-            roleFeedbackPopup = FindObjectByName("RoleFeedbackPopup");
+            roleFeedbackPopup = FindObjectByName("FeedbackRole");
 
         if (roleFeedbackPopup != null)
             roleFeedbackPopup.SetActive(false);
@@ -352,15 +359,19 @@ public class MLevelSelectionManager : MonoBehaviourPunCallbacks, IOnEventCallbac
 
     private void ShowFeedback(string message)
     {
-        if (feedbackPopupPrefab != null || feedbackPopup != null)
+        if (feedbackPopupPrefab != null)
         {
-            SpawnFloatingFeedback(message, feedbackPopupPrefab ?? feedbackPopup, feedbackPopupContainer ?? feedbackPopup?.transform.parent);
+            SpawnFloatingFeedback(message, feedbackPopupPrefab, feedbackPopupContainer != null ? feedbackPopupContainer : feedbackPopup?.transform.parent);
             return;
         }
 
-        if (feedbackPopup != null)
-            feedbackPopup.SetActive(true);
+        if (feedbackPopup == null)
+        {
+            Debug.LogWarning("[MLevelSelectionManager] ShowFeedback() called but there is no feedbackPopupPrefab and no feedbackPopup reference. Message lost: \"" + message + "\"");
+            return;
+        }
 
+        feedbackPopup.SetActive(true);
         if (feedbackText != null)
             feedbackText.text = message;
     }
@@ -370,22 +381,41 @@ public class MLevelSelectionManager : MonoBehaviourPunCallbacks, IOnEventCallbac
         if (prototype == null)
             return;
 
+        if (parent == null)
+        {
+            Debug.LogWarning("[MLevelSelectionManager] SpawnFloatingFeedback has no parent Transform to spawn under (assign feedbackPopupContainer / roleFeedbackPopupContainer). Message lost: \"" + message + "\"");
+            return;
+        }
+
         GameObject instance = Instantiate(prototype, parent);
         instance.SetActive(true);
 
+        // Make sure new popups render above older ones that are still fading out.
+        instance.transform.SetAsLastSibling();
+
         TextMeshProUGUI text = instance.GetComponentInChildren<TextMeshProUGUI>();
         if (text != null)
+        {
             text.text = message;
+
+            // Common silent-failure cause: the TMP's own vertex color alpha is 0
+            // (leftover from earlier testing). CanvasGroup fading won't fix this,
+            // since CanvasGroup.alpha multiplies on top of the text's own alpha.
+            Color c = text.color;
+            if (c.a < 1f)
+                text.color = new Color(c.r, c.g, c.b, 1f);
+        }
 
         CanvasGroup canvasGroup = instance.GetComponent<CanvasGroup>();
         if (canvasGroup == null)
             canvasGroup = instance.AddComponent<CanvasGroup>();
 
+        // Popups shouldn't eat clicks meant for buttons underneath, especially
+        // when several are stacked up from spamming.
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+
         RectTransform rect = instance.GetComponent<RectTransform>();
-        if (rect != null)
-        {
-            rect.anchoredPosition = rect.anchoredPosition;
-        }
 
         StartCoroutine(AnimateFloatingPopup(instance, canvasGroup, rect));
     }
@@ -442,15 +472,19 @@ public class MLevelSelectionManager : MonoBehaviourPunCallbacks, IOnEventCallbac
 
     private void ShowRoleFeedback(string message)
     {
-        if (roleFeedbackPopupPrefab != null || roleFeedbackPopup != null)
+        if (roleFeedbackPopupPrefab != null)
         {
-            SpawnFloatingFeedback(message, roleFeedbackPopupPrefab ?? roleFeedbackPopup, roleFeedbackPopupContainer ?? roleFeedbackPopup?.transform.parent);
+            SpawnFloatingFeedback(message, roleFeedbackPopupPrefab, roleFeedbackPopupContainer != null ? roleFeedbackPopupContainer : roleFeedbackPopup?.transform.parent);
             return;
         }
 
-        if (roleFeedbackPopup != null)
-            roleFeedbackPopup.SetActive(true);
+        if (roleFeedbackPopup == null)
+        {
+            Debug.LogWarning("[MLevelSelectionManager] ShowRoleFeedback() called but there is no roleFeedbackPopupPrefab and no roleFeedbackPopup reference. Message lost: \"" + message + "\"");
+            return;
+        }
 
+        roleFeedbackPopup.SetActive(true);
         if (roleFeedbackText != null)
             roleFeedbackText.text = message;
     }
@@ -475,16 +509,17 @@ public class MLevelSelectionManager : MonoBehaviourPunCallbacks, IOnEventCallbac
     {
         bool role1Selected = !string.IsNullOrEmpty(selectedRole1By);
         bool role2Selected = !string.IsNullOrEmpty(selectedRole2By);
+        int localSelectedRole = GetLocalSelectedRoleIndex();
 
         if (role1SelectButton != null)
-            role1SelectButton.interactable = !role1Selected;
+            role1SelectButton.interactable = !role1Selected && localSelectedRole != 2;
         if (role1RemoveButton != null)
-            role1RemoveButton.interactable = role1Selected;
+            role1RemoveButton.interactable = role1Selected && selectedRole1By == GetLocalPlayerNameOrDefault();
 
         if (role2SelectButton != null)
-            role2SelectButton.interactable = !role2Selected;
+            role2SelectButton.interactable = !role2Selected && localSelectedRole != 1;
         if (role2RemoveButton != null)
-            role2RemoveButton.interactable = role2Selected;
+            role2RemoveButton.interactable = role2Selected && selectedRole2By == GetLocalPlayerNameOrDefault();
 
         rolesSelected = AreRolesFullySelected();
         UpdateReadyButtonState();
@@ -498,6 +533,32 @@ public class MLevelSelectionManager : MonoBehaviourPunCallbacks, IOnEventCallbac
     private void SendRoleSelection(int roleIndex, bool selected)
     {
         string playerName = GetLocalPlayerNameOrDefault();
+        int localSelectedRole = GetLocalSelectedRoleIndex();
+
+        if (selected)
+        {
+            if (localSelectedRole != 0 && localSelectedRole != roleIndex)
+            {
+                ShowRoleFeedback("You already have a role selected.");
+                return;
+            }
+
+            if ((roleIndex == 1 && !string.IsNullOrEmpty(selectedRole1By)) ||
+                (roleIndex == 2 && !string.IsNullOrEmpty(selectedRole2By)))
+            {
+                ShowRoleFeedback($"Role{roleIndex} is already taken.");
+                return;
+            }
+        }
+        else
+        {
+            if (localSelectedRole != roleIndex)
+            {
+                ShowRoleFeedback("You can only deselect the role you own.");
+                return;
+            }
+        }
+
         object[] content = new object[] { roleIndex, selected, playerName };
         RaiseEventOptions options = new RaiseEventOptions { Receivers = ReceiverGroup.All };
         SendOptions sendOptions = new SendOptions { Reliability = true };
@@ -530,6 +591,16 @@ public class MLevelSelectionManager : MonoBehaviourPunCallbacks, IOnEventCallbac
         PlayerPrefs.SetString(Role2SelectedByKey, selectedRole2By ?? string.Empty);
         PlayerPrefs.SetInt(RolesSelectedKey, rolesSelected ? 1 : 0);
         PlayerPrefs.Save();
+    }
+
+    private int GetLocalSelectedRoleIndex()
+    {
+        string localName = GetLocalPlayerNameOrDefault();
+        if (!string.IsNullOrEmpty(selectedRole1By) && selectedRole1By == localName)
+            return 1;
+        if (!string.IsNullOrEmpty(selectedRole2By) && selectedRole2By == localName)
+            return 2;
+        return 0;
     }
 
     public void OnEvent(EventData photonEvent)

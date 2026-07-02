@@ -15,19 +15,30 @@ public class RoomManager : MonoBehaviourPunCallbacks
     [SerializeField] private TMP_InputField roomNameInputField;
     [SerializeField] private Button createRoomButton;
     [SerializeField] private Button joinRoomButton;
+    [SerializeField] private TextMeshProUGUI connectionStatusText;
+
+    private bool isConnectedToMaster;
+
+    private void Awake()
+    {
+        isConnectedToMaster = false;
+
+        if (connectionStatusText != null)
+        {
+            connectionStatusText.gameObject.SetActive(false);
+        }
+
+        createRoomButton.interactable = false;
+        joinRoomButton.interactable = false;
+    }
 
     void Update()
     {
-        if (string.IsNullOrEmpty(userNameInputField.text) || string.IsNullOrEmpty(roomNameInputField.text))
-        {
-            createRoomButton.interactable = false;
-            joinRoomButton.interactable = false;
-        }
-        else
-        {
-            createRoomButton.interactable = true;
-            joinRoomButton.interactable = true;
-        }
+        bool hasValidInput = !string.IsNullOrEmpty(userNameInputField.text) && !string.IsNullOrEmpty(roomNameInputField.text);
+        bool canInteract = isConnectedToMaster;
+
+        createRoomButton.interactable = canInteract;
+        joinRoomButton.interactable = canInteract;
     }
 
     public void CreateRoom()
@@ -55,16 +66,27 @@ public class RoomManager : MonoBehaviourPunCallbacks
         Debug.Log("Disconnected from server: " + cause.ToString());
     }
 
+    public void SetConnectedToMaster(bool connected)
+    {
+        isConnectedToMaster = connected;
+
+        if (connectionStatusText != null)
+        {
+            connectionStatusText.gameObject.SetActive(connected);
+            connectionStatusText.text = connected ? "Server connected." : "";
+        }
+    }
+
     public override void OnCreatedRoom()
     {
         Debug.Log("Room created: " + PhotonNetwork.CurrentRoom.Name);
-        // PhotonNetwork.LoadLevel("GameScene");
+        PhotonNetwork.LoadLevel("M_LevelSelection");
     }
 
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined room: " + PhotonNetwork.CurrentRoom.Name);
-        // PhotonNetwork.LoadLevel("GameScene");
+        PhotonNetwork.LoadLevel("M_LevelSelection");
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)

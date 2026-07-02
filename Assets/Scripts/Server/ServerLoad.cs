@@ -6,7 +6,8 @@ using Photon.Pun;
 /// </summary>
 public class ServerLoad : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private GameObject serverLoadingScreen;
+    [SerializeField] private RoomManager roomManager;
+
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
@@ -15,6 +16,10 @@ public class ServerLoad : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to server");
-        serverLoadingScreen.SetActive(false);
+
+        if (roomManager != null)
+        {
+            roomManager.SetConnectedToMaster(true);
+        }
     }
 }
