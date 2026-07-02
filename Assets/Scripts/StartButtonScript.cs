@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class StartButtonScript : MonoBehaviour
 {
+    [SerializeField] private bool requireOptionsPanel = true;
     public CanvasGroup OptionsMenu;
     public GameObject optionsPanel;
     public CanvasGroup Menu;
@@ -12,7 +13,7 @@ public class StartButtonScript : MonoBehaviour
 
     public void Start()
     {
-        if (OptionsMenu == null)
+        if (requireOptionsPanel && OptionsMenu == null)
             OptionsMenu = optionsPanel.GetComponent<CanvasGroup>();
 
         SetCanvasGroupVisibility(OptionsMenu, false);
@@ -20,6 +21,22 @@ public class StartButtonScript : MonoBehaviour
     public void LoadLevelSelection()
     {
         SceneManager.LoadScene("LevelSelection");
+    }
+
+    public void LoadModeSelection()
+    {
+        SceneManager.LoadScene("GameType");
+    }
+
+    public void LoadMultiplayerMode()
+    {
+        SceneManager.LoadScene("CreateServer");
+        // Debug.Log("to load");
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void QuitApplication()
