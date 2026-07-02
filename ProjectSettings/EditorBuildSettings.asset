@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelection.unity
     guid: 66b21a37433e81f46be7d38bd7cf3bc5
   - enabled: 1
+    path: Assets/Scenes/GameType.unity
+    guid: c2e8945f891fde44ebca545f8a7ffa78
+  - enabled: 1
+    path: Assets/Scenes/CreateServer.unity
+    guid: 1dca1e4e8b9acba4690c7f61a88a9c82
+  - enabled: 1
     path: Assets/Scenes/Levels/(1) Easy/1-Tutorial.unity
     guid: 0e0bb5c066e41e74b9fe919d19f0eea2
   - enabled: 1
