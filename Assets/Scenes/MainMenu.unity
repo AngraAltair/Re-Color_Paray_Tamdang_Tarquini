@@ -574,6 +574,7 @@ MonoBehaviour:
   - {fileID: 1472609515}
   - {fileID: 1423768470}
   reenableTutorialButtons: {fileID: 0}
+  fullscreenToggle: {fileID: 2040511069}
 --- !u!1 &99836286
 GameObject:
   m_ObjectHideFlags: 0

@@ -245,7 +245,7 @@ public class LevelSelector : MonoBehaviour
         PlayerPrefs.SetInt(PrefKey, 0);
         PlayerPrefs.Save();
         tutorialPopupPanel.SetActive(false);
-        LoadScene("Tutorial");
+        LoadScene("1-Tutorial");
     }
 
     public void OnPopupNo()
@@ -274,7 +274,7 @@ public class LevelSelector : MonoBehaviour
         if (PlayerPrefs.GetInt(SecondPrefKey, 1) == 1)
             secondTutorialPopupPanel.SetActive(true);
         else
-            LoadScene("Tutorial2");
+            LoadScene("2-1");
     }
 
     public void OnSecondPopupYes()
@@ -282,7 +282,7 @@ public class LevelSelector : MonoBehaviour
         PlayerPrefs.SetInt(SecondPrefKey, 0);
         PlayerPrefs.Save();
         secondTutorialPopupPanel.SetActive(false);
-        LoadScene("Tutorial2");
+        LoadScene("2-Tutorial");
     }
 
     public void OnSecondPopupNo()

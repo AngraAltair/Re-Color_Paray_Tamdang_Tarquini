@@ -29,6 +29,8 @@ public class OptionsManager : MonoBehaviour
         0.65f, 0.8f, 0.95f, 0.975f, 1.0f
     };
 
+    [Header("Fullscreen")]
+    [SerializeField] private Toggle fullscreenToggle;
     private int lastWidth;
     private int lastHeight;
 
@@ -61,9 +63,12 @@ public class OptionsManager : MonoBehaviour
         bool fullscreen = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
         ApplyFullscreen(fullscreen);
 
-        // Sync the toggle to match saved state
-        // Find your toggle and set it: fullscreenToggle.isOn = fullscreen;
-        // (wire this up in Inspector via OnValueChanged -> ToggleFullscreen)
+        if (fullscreenToggle != null)
+        {
+            fullscreenToggle.onValueChanged.RemoveListener(ToggleFullscreen);
+            fullscreenToggle.isOn = fullscreen;
+            fullscreenToggle.onValueChanged.AddListener(ToggleFullscreen);
+        }
 
         lastWidth = Screen.width;
         lastHeight = Screen.height;

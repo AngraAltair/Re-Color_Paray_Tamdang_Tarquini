@@ -732,6 +732,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7862280449269599473, guid: f06e7f08ff1b96f4fbc9b61ee718db94, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1867066099}
+    - target: {fileID: 7862280449269599473, guid: f06e7f08ff1b96f4fbc9b61ee718db94, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleAudioPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7939181204542930117, guid: f06e7f08ff1b96f4fbc9b61ee718db94, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1867066099}
+    - target: {fileID: 7939181204542930117, guid: f06e7f08ff1b96f4fbc9b61ee718db94, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TogglePausePanel
+      objectReference: {fileID: 0}
     - target: {fileID: 7964406560726166835, guid: f06e7f08ff1b96f4fbc9b61ee718db94, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
